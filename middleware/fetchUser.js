@@ -9,6 +9,9 @@ let fetchUser = async (req, res, next) => {
     try {
         let data = jwt.verify(token, 'shhhhh')
         let User = await user.findOne({ email: data.email }).select("-password")
+        if (!User) {
+            return res.status(401).json({ message: "User not found" });
+        }
         req.user = User
     } catch (error) {
         return res.status(401).json({message:"Invalid token"})
