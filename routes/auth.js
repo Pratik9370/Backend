@@ -48,7 +48,7 @@ router.post("/createUser", [body('email', 'Enter valid email').isEmail(), body('
 
         // Generating token of User email using jwt
         const token = jwt.sign({ email: User.email }, 'shhhhh');
-        res.cookie("auth-token", token, { httpOnly: true, secure: false, sameSite: 'Strict', maxAge: 24 * 60 * 60 * 1000 });
+        res.cookie("auth-token", token, { httpOnly: true, secure: true, sameSite: 'Strict', maxAge: 24 * 60 * 60 * 1000 });
         res.status(200).json({ token })
 
     } catch (error) {
@@ -197,7 +197,7 @@ router.post("/login", [body('email', 'Enter valid email').isEmail(), body('passw
 
         // Generating token of User email using jwt after validation of all credentials
         const token = jwt.sign({ email: User.email }, 'shhhhh');
-        await res.cookie("auth-token", token, { httpOnly: true, secure: false, sameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
+        await res.cookie("auth-token", token, { httpOnly: true, secure: true, sameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
         return res.status(200).json({ message: "Logged in successfully", token: token })
     } catch {
         error => {
@@ -229,7 +229,7 @@ router.post("/logout", fetchUser, async (req, res) => {
     try {
         res.cookie("auth-token", "", {
             httpOnly: true,
-            secure: false,
+            secure: true,
             sameSite: "strict",
             expires: new Date(0),
             path: "/"
