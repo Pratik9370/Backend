@@ -8,7 +8,7 @@ const path = require('path');
 connectToMongo()
 
 app.use(cors({
-    origin: 'http://localhost:5173', // frontend URL
+    origin: 'https://glittery-arithmetic-b2cbe0.netlify.app/', // frontend URL
     credentials: true,               // To Allow cookies to be sent
   }));
 app.use(express.json())
