@@ -23,6 +23,9 @@ const noteSchema={
     },
     image:{
         type:String
+    },
+    imagePublicId:{
+        type:String
     }
 }
 
