@@ -204,7 +204,6 @@ router.post("/login", [body('email', 'Enter valid email').isEmail(), body('passw
             console.log(error)
             res.status(500).json({ message: "Internal server error", error})
         }
-    }
 })
 
 // Route 3: Get all data of loggedin user using: Post "/api/auth/getUser" logged in required
