@@ -199,7 +199,7 @@ router.post("/login", [body('email', 'Enter valid email').isEmail(), body('passw
         const token = jwt.sign({ email: User.email }, 'shhhhh');
         await res.cookie("auth-token", token, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
         return res.status(200).json({ message: "Logged in successfully", token: token })
-    } catch {
+    } catch
         (error) {
             console.log(error)
             res.status(500).json({ message: "Internal server error", })
