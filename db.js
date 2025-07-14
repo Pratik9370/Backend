@@ -19,8 +19,4 @@ const connectToMongo = async () => {
     }
 }
 
-<<<<<<< HEAD
 module.exports = connectToMongo
-=======
-module.exports = connectToMongo
->>>>>>> 275a7ab8dc8343724363dc7ff1e1af234ec023e9
