@@ -1,8 +1,22 @@
-const mongoose=require('mongoose')
-const mongoURI="mongodb+srv://pratikvj9370:Pratik2605@cluster0.i7ubh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-const connectToMongo=async()=>{
-    await mongoose.connect(mongoURI)
-    console.log("Connected to mongoDB")
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+
+const mongoose = require('mongoose')
+const DB = process.env.DATABASE
+
+console.log("Loaded DB URI from env:", DB);
+
+if (!DB) {
+    throw new Error("Environment variable is not defined")
 }
 
-module.exports=connectToMongo
+const connectToMongo = async () => {
+    try {
+        await mongoose.connect(DB)
+        console.log("Connected to mongoDB")
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+module.exports = connectToMongo
