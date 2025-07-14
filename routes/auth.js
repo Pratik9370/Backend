@@ -197,14 +197,13 @@ router.post("/login", [body('email', 'Enter valid email').isEmail(), body('passw
 
         // Generating token of User email using jwt after validation of all credentials
         const token = jwt.sign({ email: User.email }, 'shhhhh');
-        await res.cookie("auth-token", token, { httpOnly: true, secure: true, sameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
+        await res.cookie("auth-token", token, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
         return res.status(200).json({ message: "Logged in successfully", token: token })
-    } catch {
-        error => {
+    } catch
+        (error) {
             console.log(error)
-            res.status(500).json({ message: "Internal server error", })
+            res.status(500).json({ message: "Internal server error", error})
         }
-    }
 })
 
 // Route 3: Get all data of loggedin user using: Post "/api/auth/getUser" logged in required
