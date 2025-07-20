@@ -229,7 +229,7 @@ router.post("/logout", fetchUser, async (req, res) => {
         res.cookie("auth-token", "", {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
+            sameSite: "None",
             expires: new Date(0),
             path: "/"
         });
